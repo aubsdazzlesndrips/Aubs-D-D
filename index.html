@@ -1,1 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aub’s Dazzles & Drips | A Little Dazzle, A Lot of Drip!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@400;600;700;900&family=Shrikhand&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-black: #0d0d0d;
+            --card-black: #161616;
+            --hot-pink: #ff2a85;
+            --neon-green: #00ff66;
+            --white: #ffffff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-black); color: var(--white); font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+        .cheetah-border { border: 4px solid var(--hot-pink); box-shadow: 5px 5px 0px var(--neon-green); background: linear-gradient(135deg, rgba(22,22,22,0.95), rgba(30,10,20,0.95)); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* HEADER */
+        .site-header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(13, 13, 13, 0.95); border-bottom: 3px solid var(--hot-pink); z-index: 1000; backdrop-filter: blur(8px); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo-text { font-family: 'Shrikhand', cursive; font-size: 1.3rem; color: var(--white); text-decoration: none; text-shadow: 2px 2px var(--hot-pink); }
+        .logo-text span { color: var(--neon-green); }
+        .main-nav { display: flex; gap: 20px; align-items: center; }
+        .main-nav a { color: var(--white); text-decoration: none; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; }
+        .main-nav a:hover { color: var(--neon-green); }
+        .nav-contact-btn { background: var(--hot-pink); padding: 6px 12px; border-radius: 4px; border: 2px solid var(--white); box-shadow: 2px 2px 0px var(--neon-green); }
 
+        /* HERO */
+        .hero-section { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 20px 60px; background: radial-gradient(circle at center, rgba(255,42,133,0.15) 0%, rgba(13,13,13,1) 70%); }
+        .sticker-badge { display: inline-block; background: var(--neon-green); color: var(--bg-black); font-weight: 900; padding: 6px 16px; border-radius: 50px; transform: rotate(-3deg); box-shadow: 3px 3px 0px var(--hot-pink); margin-bottom: 20px; font-size: 0.85rem; }
+        .hero-title { font-family: 'Shrikhand', cursive; font-size: clamp(2.3rem, 6vw, 5.5rem); line-height: 1.1; color: var(--white); text-shadow: 4px 4px 0px var(--hot-pink), 8px 8px 0px var(--neon-green); margin-bottom: 15px; }
+        .highlight-dazzle { color: var(--neon-green); text-shadow: 4px 4px 0px var(--hot-pink); }
+        .hero-tagline { font-size: clamp(1.1rem, 2.5vw, 1.8rem); font-weight: 700; color: var(--hot-pink); margin-bottom: 10px; text-transform: uppercase; }
+        .hero-subtext { font-size: 0.95rem; color: #cccccc; margin-bottom: 30px; font-style: italic; }
+        .hero-actions { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+
+        /* BUTTONS */
+        .btn-retro { font-family: 'Outfit', sans-serif; font-weight: 900; text-transform: uppercase; padding: 12px 24px; border-radius: 8px; text-decoration: none; cursor: pointer; border: 3px solid var(--white); display: inline-block; }
+        .btn-pink { background-color: var(--hot-pink); color: var(--white); box-shadow: 4px 4px 0px var(--neon-green); }
+        .btn-green { background-color: var(--neon-green); color: var(--bg-black); box-shadow: 4px 4px 0px var(--hot-pink); }
+
+        /* SECTIONS */
+        section { padding: 80px 0; }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-header h2 { font-family: 'Shrikhand', cursive; font-size: clamp(1.8rem, 4vw, 3rem); color: var(--white); text-shadow: 3px 3px var(--hot-pink); margin-bottom: 10px; }
+        .pink-underline { width: 80px; height: 4px; background: var(--neon-green); margin: 15px auto 0; box-shadow: 0 0 10px var(--neon-green); }
+
+        /* ABOUT */
+        .about-section { background-color: #111111; }
+        .about-card { max-width: 800px; margin: 0 auto; background: var(--card-black); padding: 30px; border-radius: 12px; font-size: 1rem; line-height: 1.6; text-align: center; }
+        .about-card p + p { margin-top: 15px; }
+
+        /* SHOP */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        .product-card { background: var(--card-black); border: 3px solid var(--hot-pink); border-radius: 10px; padding: 20px; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 4px 4px 0px var(--neon-green); transition: transform 0.2s; }
+        .product-card:active { transform: scale(0.98); }
+        .product-card-icon { font-size: 2.5rem; margin-bottom: 12px; text-align: center; }
+        .product-card h3 { font-size: 1.15rem; margin-bottom: 8px; color: var(--white); }
+        .product-card p { color: #b3b3b3; font-size: 0.85rem; line-height: 1.4; margin-bottom: 15px; flex-grow: 1; }
+        .product-card-cta { border: 2px solid var(--hot-pink); color: var(--hot-pink); font-weight: 700; padding: 6px 10px; border-radius: 6px; text-align: center; font-size: 0.85rem; }
+
+        /* PARTIES */
+        .parties-section { background-color: #111111; }
+        .parties-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .party-card { background: var(--card-black); border: 3px solid var(--neon-green); border-radius: 10px; padding: 25px; box-shadow: 4px 4px 0px var(--hot-pink); }
+        .party-card h3 { color: var(--neon-green); margin-bottom: 10px; font-size: 1.2rem; }
+        .party-card p { color: #cccccc; font-size: 0.9rem; line-height: 1.4; }
+        .party-cta { text-align: center; background: var(--card-black); padding: 25px; border: 3px dashed var(--hot-pink); border-radius: 10px; }
+        .party-cta p { margin-bottom: 15px; font-weight: 600; font-size: 0.95rem; }
+
+        /* CONTACT FORM */
+        .contact-form { max-width: 650px; margin: 0 auto; background: var(--card-black); padding: 30px 20px; border-radius: 12px; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-weight: 700; margin-bottom: 6px; color: var(--neon-green); font-size: 0.9rem; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px; background: #0a0a0a; border: 2px solid #333333; border-radius: 6px; color: var(--white); font-size: 1rem; }
+        .submit-btn { width: 100%; margin-top: 5px; }
+
+        /* FOOTER */
+        .site-footer { background-color: #080808; border-top: 3px solid var(--hot-pink); padding: 40px 20px; text-align: center; }
+        .site-footer h3 { font-family: 'Shrikhand', cursive; font-size: 1.3rem; color: var(--hot-pink); margin-bottom: 8px; }
+        .site-footer p { color: #b3b3b3; font-size: 0.9rem; margin-bottom: 4px; }
+        .footer-tag { font-style: italic; color: var(--neon-green) !important; margin-bottom: 15px !important; }
+        .copyright { font-size: 0.8rem; color: #666666; }
+
+        /* POPUP MODAL */
+        .product-modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; z-index: 2000; opacity: 0; visibility: hidden; transition: 0.25s; padding: 15px; backdrop-filter: blur(4px); }
+        .product-modal-overlay.active { opacity: 1; visibility: visible; }
+        .product-modal-content { background: var(--card-black); width: 100%; max-width: 550px; border-radius: 12px; padding: 30px 20px; position: relative; max-height: 85vh; overflow-y: auto; }
+        .modal-close-btn { position: absolute; top: 10px; right: 15px; background: none; border: none; color: var(--white); font-size: 2rem; cursor: pointer; }
+        .modal-icon-badge { font-size: 3.5rem; text-align: center; margin-bottom: 10px; }
+        .product-modal-content h3 { font-family: 'Shrikhand', cursive; font-size: 1.5rem; color: var(--white); text-align: center; margin-bottom: 15px; text-shadow: 2px 2px var(--hot-pink); }
+        .modal-desc { color: #cccccc; font-size: 0.95rem; line-height: 1.5; margin-bottom: 15px; }
+        .modal-extra { background: #0a0a0a; border-left: 4px solid var(--neon-green); padding: 12px; margin-bottom: 20px; border-radius: 4px; font-size: 0.9rem; color: #dddddd; }
+        .modal-actions { text-align: center; }
+
+        @media(max-width: 768px) {
+            .main-nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="#" class="logo-text">Aub’s <span>Dazzles & Drips</span></a>
+            <nav class="main-nav">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#shop">Shop</a>
+                <a href="#parties">Parties</a>
+                <a href="#contact" class="nav-contact-btn">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <div class="sticker-badge">✨ 100% Sparkle Guaranteed ✨</div>
+            <h1 class="hero-title">AUB’S <br><span class="highlight-dazzle">DAZZLES & DRIPS</span></h1>
+            <p class="hero-tagline">A Little Dazzle, A Lot of Drip!</p>
+            <p class="hero-subtext">Made with creativity & lots of sparkle.</p>
+            <div class="hero-actions">
+                <a href="#shop" class="btn-retro btn-pink">SHOP 💖</a>
+                <a href="#contact" class="btn-retro btn-green">INQUIRE ✨</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>ABOUT 🪩</h2>
+                <div class="pink-underline"></div>
+            </div>
+            <div class="about-card cheetah-border">
+                <p>Welcome to <strong>Aub’s Dazzles & Drips</strong>, your ultimate destination for fun, colorful, sparkly, and customized creations! Every piece is crafted <em>Made with creativity & lots of sparkle.</em></p>
+                <p>Explore our shop below for mystery capsules, bedazzled gear, custom phone cases, party essentials, and our new sleepover packages!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="shop" class="shop-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>THE SHOP 🛍️</h2>
+                <p>Tap any product card to see full details!</p>
+                <div class="pink-underline"></div>
+            </div>
+            <div class="product-grid" id="productGrid"></div>
+        </div>
+    </section>
+
+    <section id="parties" class="parties-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>PARTIES ✨</h2>
+                <div class="pink-underline"></div>
+            </div>
+            <div class="parties-grid">
+                <div class="party-card">
+                    <h3>Birthday Parties</h3>
+                    <p>Make birthdays extra magical with custom themed party packages, decorations, and party essentials.</p>
+                </div>
+                <div class="party-card">
+                    <h3>Princess Parties</h3>
+                    <p>Add sparkle, tiaras, and custom thematic touches fit for royalty.</p>
+                </div>
+                <div class="party-card">
+                    <h3>Sleepovers</h3>
+                    <p>Our newer sleepover package brings fun, themed, sparkly, and creative extras directly to your sleepover!</p>
+                </div>
+                <div class="party-card">
+                    <h3>Themed Celebrations</h3>
+                    <p>Incorporate Aub’s Dazzles & Drips into any celebration using our party packages, balloons, decor, and invites.</p>
+                </div>
+            </div>
+            <div class="party-cta">
+                <p>Need pricing or exact package sizes? Contact us for a custom quote!</p>
+                <a href="#contact" class="btn-retro btn-pink">GET A QUOTE 💌</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>GET IN TOUCH 💌</h2>
+                <div class="pink-underline"></div>
+            </div>
+            <form name="contact" method="POST" action="/" data-netlify="true" data-netlify-honeypot="bot-field" class="contact-form cheetah-border" id="contactForm">
+                <input type="hidden" name="form-name" value="contact">
+                <p style="display:none;"><label><input name="bot-field"></label></p>
+                <div class="form-group">
+                    <label>Your Name 💖</label>
+                    <input type="text" name="name" required placeholder="Tonia">
+                </div>
+                <div class="form-group">
+                    <label>Your Email ✨</label>
+                    <input type="email" name="email" required placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label>What can we help with? 🌟</label>
+                    <select id="category" name="category" required>
+                        <option value="" disabled selected>Select an option...</option>
+                        <option value="General Question">General Question</option>
+                        <option value="Custom Order">Custom Order</option>
+                        <option value="Party Package">Party Package</option>
+                        <option value="Sleepover Package">Sleepover Package</option>
+                        <option value="Mystery Bags & Capsules">Mystery Bags & Capsules</option>
+                        <option value="Dazzle Drip Sodas">Dazzle Drip Sodas</option>
+                        <option value="Custom Phone Case">Custom Phone Case</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Your Message 💬</label>
+                    <textarea id="message" name="message" rows="4" required placeholder="Tell us what you're dreaming up..."></textarea>
+                </div>
+                <button type="submit" class="btn-retro btn-green submit-btn">SEND MESSAGE 🚀</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container">
+            <h3>Aub’s Dazzles & Drips</h3>
+            <p>A Little Dazzle, A Lot of Drip!</p>
+            <p class="footer-tag">Made with creativity & lots of sparkle.</p>
+            <p class="copyright">© 2026 Aub’s Dazzles & Drips.</p>
+        </div>
+    </footer>
+
+    <div class="product-modal-overlay" id="productModal">
+        <div class="product-modal-content cheetah-border">
+            <button class="modal-close-btn" id="modalClose">&times;</button>
+            <div class="modal-icon-badge" id="modalIcon">✨</div>
+            <h3 id="modalTitle">Title</h3>
+            <div id="modalDescription" class="modal-desc">Desc</div>
+            <div id="modalExtra" class="modal-extra">Extra</div>
+            <div class="modal-actions">
+                <button class="btn-retro btn-pink" id="modalInquireBtn">ASK ABOUT THIS 💌</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const productsData = [
+            { id: "mystery-bags", name: "Mystery Bags & Capsules", icon: "🎁", shortDesc: "Mystery bags, stickers, smaller accessories, and capsule surprises.", fullDesc: "Dive into the unexpected with our signature Mystery Bags & Capsules! Packed with stickers, smaller accessories, and fun gumball-machine style surprises.", extra: "✨ Note: The capsule/gumball machine is exclusively available for live events and pop-ups." },
+            { id: "dazzle-sodas", name: "Dazzle Drip Sodas", icon: "🥤", shortDesc: "Personalized bottle labels with custom themes for parties.", fullDesc: "Take your event drinks to the next level with personalized bottle labels and custom themes designed for parties and special events.", extra: "✨ Note: We design and provide the custom thematic presentation labels; we do not manufacture the soda itself." },
+            { id: "phone-cases", name: "Custom Phone Case Personalization", icon: "📱", shortDesc: "Bring your own phone case or use a blank case for custom styling.", fullDesc: "Customize your phone case! Bring your existing phone case or use a blank case matched to your phone type. Pick your theme and color.", extra: "💎 Optional paid add-ons: Custom names, initials, and larger charms are priced separately." },
+            { id: "bedazzled-items", name: "Bedazzled Items", icon: "💎", shortDesc: "Customized sparkly and bedazzled items tailored to your unique vibe.", fullDesc: "Add maximum sparkle to your world with our custom bedazzled items. Because individual pieces vary, every creation is uniquely styled.", extra: "✨ Fully customizable upon request through our contact form." },
+            { id: "keychains", name: "Custom Keychains", icon: "🔑", shortDesc: "Personalized and custom keychains that bring extra drip.", fullDesc: "Never lose your keys in style again! Our custom keychains are tailored with personalized details and sparkly accents.", extra: "✨ Great for gifts, event favors, or everyday glam." },
+            { id: "bookmarks", name: "Bookmarks", icon: "📖", shortDesc: "Custom and fun bookmarks to make reading feel ultra-stylish.", fullDesc: "Mark your pages with flair using our custom and fun bookmarks designed with unique creative touches.", extra: "✨ Perfect for book lovers and students alike." },
+            { id: "pins-buttons-pens", name: "Pins / Buttons / Pens", icon: "✏️", shortDesc: "Fun small accessory offerings including pins, buttons, and pens.", fullDesc: "Collect our statement pins, custom buttons, and stylish pens to complete your Y2K stationery and accessory collection.", extra: "✨ Great standalone items or stocking stuffers." },
+            { id: "cartoon-photos", name: "Cartoon Family Photo Prints or Magnets", icon: "🖼️", shortDesc: "Turn family photos into cartoon-style designs as prints or magnets.", fullDesc: "Transform your favorite family memories into cute cartoon-style designs. Available as high-quality prints or custom magnets.", extra: "✨ Customers provide the family photo; we turn them into custom cartoon artwork." },
+            { id: "stationery", name: "Stationery", icon: "📝", shortDesc: "Fun, creative, and sparkly stationery products.", fullDesc: "Spruce up your desk setup with our custom stationery line, designed to make writing and journaling extra fun.", extra: "✨ Matches our signature boutique aesthetic." },
+            { id: "accessories", name: "Accessories", icon: "👑", shortDesc: "A curated collection of fun, alternative, and sparkly accessories.", fullDesc: "Explore our diverse range of creative accessories designed to complement your everyday Y2K wardrobe and lifestyle.", extra: "✨ New pieces added regularly!" },
+            { id: "stickers", name: "Stickers", icon: "🌟", shortDesc: "High-quality Y2K, sparkly, and aesthetic stickers.", fullDesc: "Decorate your gear with our durable, eye-catching sticker designs featuring glitter accents, retro typography, and playful art.", extra: "✨ Weatherproof and durable." },
+            { id: "photo-frames", name: "Bedazzled Photo Frames", icon: "🖼️", shortDesc: "Customized bedazzled photo frames for cherished memories.", fullDesc: "Give your favorite photos the glam treatment with our custom bedazzled photo frames encrusted with sparkles and gems.", extra: "✨ Perfect for room decor or gifting." },
+            { id: "byo-devices", name: "Bedazzled BYO Devices", icon: "🎧", shortDesc: "Bring your own device for professional bedazzling service.", fullDesc: "Want your headphones or gaming gear bedazzled? Bring your own device (BYO service) and let us transform it with custom sparkle.", extra: "✨ Inquire with your specific device model for details." },
+            { id: "party-invites", name: "Themed Party Invites", icon: "💌", shortDesc: "Customized themed party invitations designed for your event.", fullDesc: "Set the tone for your next big event with custom-designed themed party invitations tailored to your theme and color palette.", extra: "✨ Available in digital formats for easy sharing." },
+            { id: "party-bundle", name: "Party Essentials Bundle", icon: "🎈", shortDesc: "Balloons, decorations, sample-size goodies, and party extras.", fullDesc: "Everything you need for an unforgettable event! Our Party Essentials Bundle includes balloons, decor, sample-size goodies, and party-themed extras.", extra: "✨ Can be seamlessly incorporated into birthday and princess party packages." },
+            { id: "sleepover-package", name: "Sleepover Package", icon: "⛺", shortDesc: "Adds fun, themed, sparkly, and creative extras to a sleepover.", fullDesc: "Elevate any slumber party with our specialized Sleepover Package! Designed to bring fun, themed, sparkly, and creative extras to make the night magical.", extra: "✨ A fantastic newer addition to our party service lineup." }
+        ];
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const grid = document.getElementById("productGrid");
+            productsData.forEach(p => {
+                const card = document.createElement("div");
+                card.className = "product-card";
+                card.innerHTML = `<div class="product-card-icon">${p.icon}</div><h3>${p.name}</h3><p>${p.shortDesc}</p><div class="product-card-cta">VIEW DETAILS ✨</div>`;
+                card.addEventListener("click", () => openModal(p));
+                grid.appendChild(card);
+            });
+
+            const modal = document.getElementById("productModal");
+            const closeBtn = document.getElementById("modalClose");
+            let activeP = null;
+
+            function openModal(p) {
+                activeP = p;
+                document.getElementById("modalTitle").textContent = p.name;
+                document.getElementById("modalIcon").textContent = p.icon;
+                document.getElementById("modalDescription").textContent = p.fullDesc;
+                document.getElementById("modalExtra").textContent = p.extra;
+                modal.classList.add("active");
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeModal() {
+                modal.classList.remove("active");
+                document.body.style.overflow = "auto";
+            }
+
+            closeBtn.addEventListener("click", closeModal);
+            modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+
+            document.getElementById("modalInquireBtn").addEventListener("click", () => {
+                closeModal();
+                document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+                document.getElementById("message").value = `I’m interested in ${activeP.name}. Could you please send me more info?`;
+            });
+        });
+    </script>
+</body>
+</html>
